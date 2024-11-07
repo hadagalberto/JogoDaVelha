@@ -48,6 +48,7 @@ wss.on("connection", (ws) => {
           players: [ws],
           board: Array(9).fill(null),
           currentPlayer: 0,
+          moves: { 0: [], 1: [] }, // Armazena as últimas 3 jogadas de cada jogador
         };
         ws.sessionId = sessionId;
         ws.send(
@@ -91,6 +92,14 @@ wss.on("connection", (ws) => {
             session.currentPlayer === player &&
             session.board[index] === null
           ) {
+            // Remover jogada mais antiga se o jogador já fez 3 jogadas
+            if (session.moves[player].length === 3) {
+              const oldestMove = session.moves[player].shift();
+              session.board[oldestMove] = null;
+            }
+
+            // Adicionar nova jogada e atualizar o tabuleiro
+            session.moves[player].push(index);
             session.board[index] = player;
 
             // Verificar o estado do jogo
@@ -122,7 +131,6 @@ wss.on("connection", (ws) => {
                 console.log(
                   `Jogador ${gameState.winner} venceu o jogo na sessão ${ws.sessionId}`
                 );
-                // Remover a sessão após o jogo terminar
                 delete sessions[ws.sessionId];
               } else if (gameState.tie) {
                 // Informar aos jogadores que o jogo empatou
@@ -136,7 +144,6 @@ wss.on("connection", (ws) => {
                   );
                 });
                 console.log(`O jogo empatou na sessão ${ws.sessionId}`);
-                // Remover a sessão após o jogo terminar
                 delete sessions[ws.sessionId];
               }
             } else {
@@ -168,7 +175,6 @@ wss.on("connection", (ws) => {
 
   ws.on("close", () => {
     console.log("Cliente desconectado");
-    // Remover jogador da sessão
     if (ws.sessionId && sessions[ws.sessionId]) {
       const session = sessions[ws.sessionId];
       session.players = session.players.filter((client) => client !== ws);
