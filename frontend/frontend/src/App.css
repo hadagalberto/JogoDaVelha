@@ -1,0 +1,155 @@
+/* App.css */
+
+/* Importar fonte do Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+  color: #ffffff;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 3em;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  background-color: #4caf50;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.buttons button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.buttons button:active {
+  background-color: #3e8e41;
+  transform: translateY(0);
+}
+
+.session-info {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 15px;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-size: 3em;
+  font-weight: bold;
+  color: #333333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.cell:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.cell:active {
+  background-color: #e0e0e0;
+  transform: translateY(0);
+}
+
+.player-info {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.game-over {
+  margin-top: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.logs {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.logs h2 {
+  margin-top: 0;
+  color: #ffd700;
+}
+
+.logs textarea {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #333333;
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9em;
+}
